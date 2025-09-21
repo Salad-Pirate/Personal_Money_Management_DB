@@ -1,0 +1,23 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# Env
+.env
+
+# PostgreSQL data
+pg_data/
+postgres-data/
+
+# Dump / Backup file
+*.sql
+*.dump
+
+# Expect for migration (
+!db/migration/*.sql
+
+# Log file
+*.log
