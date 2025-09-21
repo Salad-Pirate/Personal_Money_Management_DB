@@ -7,8 +7,13 @@ create table if not exists public.users(
 	updated_at timestamptz default now() not null
 );
 
-insert into users (email,password_hash,display_name) values(
+insert into users (email,password_hash,display_name) values
+(
 	'alice@example.com', 'alicethymefield', 'Alice'
+),
+(
+    'yuzuha@example.com', 'ukinamiyuzuha', 'yuzuha'
 );
+
 select * from users;
 

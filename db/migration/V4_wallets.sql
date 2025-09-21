@@ -5,11 +5,16 @@ create table if not exists public.wallets(
 	created_at timestamptz default now() not null,
 
 	-- Prevent same wallet name in the same user
-	unique (user_id, wallet_name)
-) 
+	unique (user_id, wallet_name),
+	constraint unique_wallets_user_pair unique(user_id, wallet_id)
+);
 
-insert into wallets(user_id, wallet_name) values(
+insert into wallets(user_id, wallet_name) values
+(
 	1,'Wallet_1'
+),
+(
+    2,'first_wallet'
 );
 
 select * from wallets;

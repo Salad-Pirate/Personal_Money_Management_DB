@@ -5,11 +5,16 @@ create table if not exists public.categories(
 	created_at timestamptz default now() not null,
 
 	-- Prevent same category name in the same user
-	unique (user_id, category_name)
+	unique (user_id, category_name),
+	constraint uniques_categories_user_pair unique(user_id,category_id)
 );
 
-insert into categories (user_id, category_name) values(
+insert into categories (user_id, category_name) values
+(
 	1,'Food'
-)
+),
+(
+    2,'Game'
+);
 
 select * from categories;

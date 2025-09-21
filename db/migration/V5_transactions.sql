@@ -34,8 +34,12 @@ create table if not exists public.transactions(
 insert into transactions(
 	user_id, category_id, payment_method_id, wallet_id,
 	transaction_type, occured_at
-) values(
+) values
+(
 	1, 1, 1, 1, 'income','2025-09-22 00:05:47.391999+07'
+),
+(
+    2, 2, 2, 2, 'income','2025-09-22 00:05:47.391999+07'
 );
 
 select * from transactions;

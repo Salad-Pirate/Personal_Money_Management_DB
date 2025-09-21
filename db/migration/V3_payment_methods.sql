@@ -5,11 +5,16 @@ create table if not exists public.payment_methods(
 	created_at timestamptz default now() not null,
 
 	-- Prevent same payment method name in the same user
-	unique (user_id,payment_method_name)
+	unique (user_id,payment_method_name),
+	constraint unique_payment_methods_user_pair unique(user_id, payment_method_id)
 );
 
-insert into payment_methods (user_id, payment_method_name) values(
+insert into payment_methods (user_id, payment_method_name) values
+(
 	1,'Cash'
+),
+(
+    2,'Visa'
 );
 
-select * from payment_methods
+select * from payment_methods;
