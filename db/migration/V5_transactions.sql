@@ -8,7 +8,7 @@ create table if not exists public.transactions(
 
 	amount numeric(12,2) not null,
 	transaction_type varchar(15) not null 
-		check(transaction_type in ('income', 'expense')),
+		check(transaction_type in ('Income', 'Expense')),
 	
 
 	occured_at timestamptz not null,
@@ -39,10 +39,10 @@ insert into transactions(
 	transaction_type, occured_at, amount
 ) values
 (
-	1, 1, 1, 1, 'income','2025-09-22 00:05:47.391999+07', 50
+	1, 1, 1, 1, 'Income','2025-09-22 00:05:47.391999+07', 50
 ),
 (
-    2, 2, 2, 2, 'income','2025-09-22 00:05:47.391999+07', 200
+    2, 2, 2, 2, 'Income','2025-09-22 00:05:47.391999+07', 200
 );
 
 select * from transactions;

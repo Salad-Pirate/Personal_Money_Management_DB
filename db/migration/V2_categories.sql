@@ -2,6 +2,8 @@ create table if not exists public.categories(
 	category_id int generated always as identity primary key,
 	user_id int not null references public.users(user_id) on delete cascade,
 	category_name varchar(255) not null,
+	category_type varchar(15) not null,
+	color_hex varchar(7) not null,
 	created_at timestamptz default now() not null,
 
 	-- Prevent same category name in the same user
@@ -9,12 +11,12 @@ create table if not exists public.categories(
 	constraint uniques_categories_user_pair unique(user_id,category_id)
 );
 
-insert into categories (user_id, category_name) values
+insert into categories (user_id, category_name, category_type, color_hex) values
 (
-	1,'Food'
+	1,'Food', 'Income','#000000'
 ),
 (
-    2,'Game'
+    2,'Game', 'Expense','#000000'
 );
 
 select * from categories;
