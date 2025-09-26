@@ -6,6 +6,7 @@ create table if not exists public.transactions(
 	payment_method_id int not null,
 	wallet_id int not null,
 
+	amount numeric(12,2) not null,
 	transaction_type varchar(15) not null 
 		check(transaction_type in ('income', 'expense')),
 	
@@ -28,18 +29,20 @@ create table if not exists public.transactions(
 	constraint fk_transactions_wallets
 		foreign key (user_id, wallet_id)
 		references public.wallets(user_id, wallet_id)
-		on delete cascade
+		on delete cascade,
+
+	constraint chk_transactions_amount_positive check (amount > 0)
 );
 
 insert into transactions(
 	user_id, category_id, payment_method_id, wallet_id,
-	transaction_type, occured_at
+	transaction_type, occured_at, amount
 ) values
 (
-	1, 1, 1, 1, 'income','2025-09-22 00:05:47.391999+07'
+	1, 1, 1, 1, 'income','2025-09-22 00:05:47.391999+07', 50
 ),
 (
-    2, 2, 2, 2, 'income','2025-09-22 00:05:47.391999+07'
+    2, 2, 2, 2, 'income','2025-09-22 00:05:47.391999+07', 200
 );
 
 select * from transactions;
