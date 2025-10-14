@@ -1,4 +1,4 @@
-name: CI (DB: Docker image with seed)
+name: CI (DB Docker image with seed)
 
 on:
   push:
