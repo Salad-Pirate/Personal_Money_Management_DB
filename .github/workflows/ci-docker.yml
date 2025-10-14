@@ -1,0 +1,31 @@
+name: CI (DB: Docker image with seed)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set image tags
+        id: vars
+        run: |
+          SHA=${GITHUB_SHA::7}
+          echo "tags=${{ secrets.DOCKERHUB_USERNAME }}/pmm_db_seeded:latest,${{ secrets.DOCKERHUB_USERNAME }}/pmm_db_seeded:${SHA}" >> $GITHUB_OUTPUT
+
+      - name: Build & Push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.vars.outputs.tags }}
