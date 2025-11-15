@@ -13,6 +13,8 @@ create table if not exists public.transactions(
 
 	occured_at timestamptz not null,
 	transaction_location varchar(255),
+	latitude DOUBLE PRECISION,
+	longitude DOUBLE PRECISION,
 	note varchar(255),
 
 	-- Prevent user use category, payment_method, wallet form other user
@@ -36,13 +38,13 @@ create table if not exists public.transactions(
 
 insert into transactions(
 	user_id, category_id, payment_method_id, wallet_id,
-	transaction_type, occured_at, amount
+	transaction_type, occured_at, amount, latitude, longitude
 ) values
 (
-	1, 1, 1, 1, 'Income','2025-09-22 00:05:47.391999+07', 50
+	1, 1, 1, 1, 'Income','2025-09-22 00:05:47.391999+07', 50, 13.7462, 100.5347
 ),
 (
-    2, 2, 2, 2, 'Income','2025-09-22 00:05:47.391999+07', 200
+    2, 2, 2, 2, 'Income','2025-09-22 00:05:47.391999+07', 200, 13.7371, 100.5606
 );
 
 select * from transactions;
